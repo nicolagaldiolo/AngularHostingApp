@@ -5,7 +5,7 @@
     { "id": 3, "provider": "Media Temple", "url": "https://mediatemple.net/", "label" : "#000000" },
     { "id": 4, "provider": "1&1", "url": "https://www.1and1.it/", "label" : "#002659" }
   ],
-  
+
   "comments": [
     { "id": 1, "body": "some comment", "postId": 1 }
   ],

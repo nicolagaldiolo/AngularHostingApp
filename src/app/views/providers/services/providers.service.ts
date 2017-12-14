@@ -18,11 +18,7 @@ export class ProvidersService {
    * get all Providers
    */
   getAll() {
-    this.http.get<Provider[]>(`${env.baseUrl}/providers`)
-      .subscribe(result => {
-        this.store.providers = result;
-        console.log(result);
-      });
+    return this.http.get<Provider[]>(`${env.baseUrl}/providers`)
   }
 
   /**

@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatIconModule} from '@angular/material/icon';
 /*import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -18,7 +25,14 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 */
 
 const MATERIAL_MODULES = [
-  MatToolbarModule
+  MatToolbarModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatTableModule,
+  MatProgressSpinnerModule,
+  MatIconModule
   /*MatSidenavModule,
   MatButtonModule,
   MatIconModule,
