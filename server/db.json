@@ -1,14 +1,70 @@
 {
   "providers": [
-    { "id": 1, "provider": "OVH", "url": "https://www.ovh.it/", "label" : "#3d557b" },
-    { "id": 2, "provider": "Aruba", "url": "https://www.aruba.it/", "label" : "#f86313" },
-    { "id": 3, "provider": "Media Temple", "url": "https://mediatemple.net/", "label" : "#000000" },
-    { "id": 4, "provider": "1&1", "url": "https://www.1and1.it/", "label" : "#002659" }
+    {
+      "id": 1,
+      "name": "OVH",
+      "website": "https://www.ovh.it/",
+      "label": "#3d557b"
+    },
+    {
+      "id": 2,
+      "name": "Aruba",
+      "website": "https://www.aruba.it/",
+      "label": "#f86313"
+    },
+    {
+      "id": 3,
+      "name": "Media Temple 3",
+      "website": "https://mediatemple.net/",
+      "label": "#000000"
+    },
+    {
+      "name": "axasxasx",
+      "website": "axasxasx",
+      "label": "axasxasx",
+      "id": 4
+    }
   ],
-
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
-  ],
-
-  "profile": { "name": "typicode" }
+  "domains": [
+    {
+      "id": 1,
+      "url": "www.pippo.com",
+      "domain": 1,
+      "hosting": 3,
+      "renewal": "2018-02-08",
+      "pay": 1,
+      "fee": 100,
+      "note": "Ciao"
+    },
+    {
+      "id": 1,
+      "url": "www.pippo.com",
+      "domain": 1,
+      "hosting": 3,
+      "renewal": "2018-02-08",
+      "pay": 1,
+      "fee": 100,
+      "note": "Ciao"
+    },
+    {
+      "id": 1,
+      "url": "www.pippo.com",
+      "domain": 1,
+      "hosting": 3,
+      "renewal": "2018-02-08",
+      "pay": 1,
+      "fee": 100,
+      "note": "Ciao"
+    },
+    {
+      "id": 1,
+      "url": "www.pippo.com",
+      "domain": 1,
+      "hosting": 3,
+      "renewal": "2018-02-08",
+      "pay": 1,
+      "fee": 100,
+      "note": "Ciao"
+    }
+  ]
 }

@@ -1,10 +1,10 @@
-import {Component, AfterViewInit, ViewChild, OnInit} from '@angular/core';
-
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-
+import {Component, AfterViewInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import {MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar} from '@angular/material';
 import { ProvidersService } from '../services/providers.service';
 import { ProvidersStore } from '../services/providers.store';
 import { Provider } from '../model/provider';
+import { ProviderEditComponent } from './provider-edit-component';
 
 @Component({
   selector: 'app-providers-view-component',
@@ -20,21 +20,18 @@ export class ProvidersViewComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor( private store: ProvidersStore, private actions: ProvidersService){}
+  constructor(
+    public dialog: MatDialog,
+    private store: ProvidersStore,
+    private actions: ProvidersService,
+    private snack: MatSnackBar ){}
 
-  /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
+
   ngAfterViewInit() {
-    this.actions.getAll().subscribe(result => {
-
-      this.store.providers = result;
-
+    this.actions.getAll().then( ()=> {
       this.dataSource = new MatTableDataSource(this.store.providers);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
     });
   }
 
@@ -43,5 +40,36 @@ export class ProvidersViewComponent implements AfterViewInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
+
+  openDialog(): void {
+    this.dialog.open(ProviderEditComponent, { maxWidth: '400px' } )
+      .afterClosed().subscribe( (result: NgForm) => {
+        this.actions.save(result.value).then( () => {
+          this.updateData();
+          this.openSnackBar('Elemento Aggiunto' );
+        });
+
+      });
+  }
+
+  deleteProvider(provider: Provider, evt: MouseEvent){
+    evt.preventDefault();
+    this.actions.delete(provider).then( () => {
+      this.updateData();
+      this.openSnackBar('Elemento eliminato' );
+    });
+  }
+
+  updateData(): void {
+    this.dataSource.data = this.store.providers;
+  }
+
+  openSnackBar(message: string, action: string = 'CLOSE', duration: number = 2500) {
+    this.snack.open(message, action, {
+      duration: duration
+    });
+  }
+
+
 
 }

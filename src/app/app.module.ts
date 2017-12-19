@@ -7,7 +7,6 @@ import { AppMaterialModule } from './app-material.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 
-
 @NgModule({
   declarations: [
     AppComponent

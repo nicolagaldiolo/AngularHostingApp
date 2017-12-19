@@ -18,7 +18,14 @@ export class ProvidersService {
    * get all Providers
    */
   getAll() {
-    return this.http.get<Provider[]>(`${env.baseUrl}/providers`)
+    const promise = new Promise( (resolve, reject) => {
+      this.http.get<Provider[]>(`${env.baseUrl}/providers`)
+        .subscribe(result => {
+          this.store.providers = result;
+          resolve();
+        });
+    })
+    return promise;
   }
 
   /**
@@ -29,7 +36,7 @@ export class ProvidersService {
     if (this.store.active.id) {
       this.edit(value as Provider);
     } else {
-      this.add(value as Provider);
+      return this.add(value as Provider);
     }
   }
 
@@ -38,11 +45,15 @@ export class ProvidersService {
    * @param {Provider} Provider
    */
   add(provider: Provider) {
-    this.http.post(`${env.baseUrl}/provider`, provider)
-      .subscribe(res => {
-        this.store.providers.push(res as Provider);
-        this.reset();
-      });
+    const promise = new Promise( (resolve, reject) =>{
+      this.http.post(`${env.baseUrl}/providers`, provider)
+        .subscribe(res => {
+          this.store.providers.push(res as Provider);
+          this.reset();
+          resolve();
+        });
+    })
+    return promise;
   }
 
   /**
@@ -71,14 +82,17 @@ export class ProvidersService {
    * @param {Provider} Provider
    */
   delete(provider: Provider) {
-    this.http.delete(`${env.baseUrl}/providers/${provider.id}`)
-      .subscribe(
-        () => {
-          const index = this.store.providers.indexOf(provider);
-          this.store.providers.splice(index, 1);
-          this.reset();
-        }
-      );
+    const promise = new Promise( (resolve, reject) => {
+      this.http.delete(`${env.baseUrl}/providers/${provider.id}`)
+        .subscribe(() => {
+            const index = this.store.providers.indexOf(provider);
+            this.store.providers.splice(index, 1);
+            this.reset();
+            resolve();
+          }
+        );
+    });
+    return promise;
   }
 
   /**
