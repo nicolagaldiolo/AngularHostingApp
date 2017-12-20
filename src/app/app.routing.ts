@@ -9,7 +9,11 @@ import { RouterModule } from '@angular/router';
         path: 'providers',
         loadChildren: 'app/views/providers/providers.module#ProvidersModule'
       },
-      { path: '**', redirectTo: 'providers' }
+      {
+        path: 'domains',
+        loadChildren: 'app/views/domains/domains.module#DomainsModule'
+      },
+      { path: '**', redirectTo: 'domains' }
     ])
   ],
   providers: [],

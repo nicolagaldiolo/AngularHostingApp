@@ -10,7 +10,8 @@ import {
   MatProgressSpinnerModule,
   MatIconModule,
   MatDialogModule,
-  MatSnackBarModule} from '@angular/material';
+  MatSnackBarModule,
+  MatSelectModule } from '@angular/material';
 
 /*import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -38,7 +39,8 @@ const MATERIAL_MODULES = [
   MatProgressSpinnerModule,
   MatIconModule,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSelectModule
 
   /*MatSidenavModule,
   MatButtonModule,
