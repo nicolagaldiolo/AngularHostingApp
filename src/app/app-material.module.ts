@@ -11,7 +11,9 @@ import {
   MatIconModule,
   MatDialogModule,
   MatSnackBarModule,
-  MatSelectModule } from '@angular/material';
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule } from '@angular/material';
 
 /*import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -40,7 +42,9 @@ const MATERIAL_MODULES = [
   MatIconModule,
   MatDialogModule,
   MatSnackBarModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 
   /*MatSidenavModule,
   MatButtonModule,

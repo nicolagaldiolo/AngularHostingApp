@@ -8,6 +8,8 @@ import { DomainEditComponent } from './components/domains-edit-component';
 import { DomainsService } from './services/domains.service';
 import { DomainsStore } from './services/domains.store';
 import { AppMaterialModule } from '../../app-material.module';
+import { ProvidersService } from '../providers/services/providers.service';
+import {ProvidersStore} from '../providers/services/providers.store';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { AppMaterialModule } from '../../app-material.module';
   ],
   providers: [
     DomainsService,
-    DomainsStore
+    DomainsStore,
+    ProvidersService,
+    ProvidersStore
   ],
   entryComponents: [DomainEditComponent],
 })
