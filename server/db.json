@@ -28,53 +28,13 @@
   "domains": [
     {
       "id": 1,
-      "url": "www.pippo.com",
-      "domain": {
-        "id": 1,
-        "name": "OVH",
-        "website": "https://www.ovh.it/",
-        "label": "#3d557b"
-      },
-      "hosting": {
-        "id": 1,
-        "name": "OVH",
-        "website": "https://www.ovh.it/",
-        "label": "#3d557b"
-      },
+      "url": "www.erica.com",
+      "domain": "",
+      "hosting": "",
       "renewal": "12/15/2017",
-      "pay": 1,
-      "fee": 100.00,
-      "note": "Ciao"
-    },
-    {
-      "id": 2,
-      "url": "www.pippo.com",
-      "domain": 1,
-      "hosting": 3,
-      "renewal": "12/15/2017",
-      "pay": 1,
-      "fee": 100.00,
-      "note": "Ciao"
-    },
-    {
-      "id": 3,
-      "url": "www.pippo.com",
-      "domain": 1,
-      "hosting": 3,
-      "renewal": "12/15/2017",
-      "pay": 1,
-      "fee": 100.60,
-      "note": "Ciao"
-    },
-    {
-      "id": 4,
-      "url": "www.pippo.com",
-      "domain": 1,
-      "hosting": 3,
-      "renewal": "12/15/2017",
-      "pay": 1,
-      "fee": 100.00,
-      "note": "Ciao"
+      "pay": "",
+      "fee": "4500",
+      "note": "Nuovo axasxasasx"
     }
   ]
 }

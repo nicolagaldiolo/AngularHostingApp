@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
-import {DomainsService} from '../services/domains.service';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { DomainsService } from '../services/domains.service';
 import { DomainsStore } from '../services/domains.store';
-import {NgForm} from '@angular/forms';
 import { ProvidersService } from '../../providers/services/providers.service';
 import { ProvidersStore } from '../../providers/services/providers.store';
-import {MatTableDataSource} from '@angular/material';
+
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-domain-edit',
@@ -19,15 +21,14 @@ import {MatTableDataSource} from '@angular/material';
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="Dominio" name="domain">
+          <mat-select ngModel name="domain" placeholder="Dominio">
             <mat-option *ngFor="let provider of this.storeProviders.providers" [value]="provider">{{provider.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="Hosting" name="hosting">
-            <mat-option value="1">Ovh</mat-option>
-            <mat-option value="0">Aruba</mat-option>
+          <mat-select ngModel name="hosting" placeholder="Hosting">
+            <mat-option *ngFor="let provider of this.storeProviders.providers" [value]="provider">{{provider.name}}</mat-option>
           </mat-select>
         </mat-form-field>
         
@@ -42,7 +43,7 @@ import {MatTableDataSource} from '@angular/material';
         </mat-form-field>
   
         <mat-form-field>
-          <mat-select placeholder="Da pagare">
+          <mat-select ngModel name="pay" placeholder="Da pagare">
             <mat-option value="1">Si</mat-option>
             <mat-option value="0">No</mat-option>
           </mat-select>
@@ -54,9 +55,9 @@ import {MatTableDataSource} from '@angular/material';
         </mat-form-field>
         
       </div>
-
-      <button md-button>Cancel</button>
-      <button md-button type="submit" [disabled]="f.invalid">Modifica dominio</button>
+      
+      <a (click)="goBack()">Annulla</a>
+      <button md-button [disabled]="f.invalid">Modifica dominio</button>
 
     </form>
     
@@ -77,10 +78,13 @@ export class DomainEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
     private actions: DomainsService,
     private actionsProviders: ProvidersService,
     private store: DomainsStore,
-    private storeProviders: ProvidersStore
+    private storeProviders: ProvidersStore,
+    private snack: MatSnackBar
   ){}
 
   ngOnInit(): void {
@@ -88,17 +92,27 @@ export class DomainEditComponent implements OnInit {
       this.actions.getDomain( params['id'] );
     });
 
-    this.actionsProviders.getAll().then( ()=> {
-      console.log(this.storeProviders.providers);
-    });
+    this.actionsProviders.getAll();
 
   }
 
   saveHandler(form: NgForm){
-    console.log(form.value);
+    this.actions.save(form.value).then( () => {
+      this.router.navigate(['/domains']);
+      this.openSnackBar('Elemento modificato correttamente' );
+    });
   }
 
 
+  openSnackBar(message: string, action: string = 'CLOSE', duration: number = 2500) {
+    this.snack.open(message, action, {
+      duration: duration
+    });
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 
 
 }

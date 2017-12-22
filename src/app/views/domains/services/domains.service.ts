@@ -40,7 +40,7 @@ export class DomainsService {
    */
   save(value) {
     if (this.store.active.id) {
-      this.edit(value as Domain);
+      return this.edit(value as Domain);
     } else {
       return this.add(value as Domain);
     }
@@ -65,19 +65,23 @@ export class DomainsService {
    * @param {Domain} Domain
    */
   edit(domain: Domain) {
-    const newDomain = Object.assign(
-      {}, this.store.active, domain
-    );
-    this.http.patch(`${env.baseUrl}/domains/${newDomain.id}`, newDomain )
-      .subscribe(
-        res => {
-          const index = this.store.domains.findIndex(d => {
-            return d.id === newDomain.id;
-          });
-          this.store.domains[index] = newDomain;
-          this.reset();
-        }
+    const promise = new Promise( (resolve, reject) => {
+
+      const newDomain = Object.assign(
+        {}, this.store.active, domain
       );
+
+      this.http.patch(`${env.baseUrl}/domains/${newDomain.id}`, newDomain)
+        .subscribe(
+          res => {
+            const index = this.store.active.id;
+            this.store.domains[index] = newDomain;
+            this.reset();
+            resolve();
+          }
+        );
+    })
+    return promise;
   }
   /**
    * delete element
