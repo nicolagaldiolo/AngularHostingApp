@@ -74,8 +74,8 @@ export class DomainsService {
       this.http.patch(`${env.baseUrl}/domains/${newDomain.id}`, newDomain)
         .subscribe(
           res => {
-            const index = this.store.active.id;
-            this.store.domains[index] = newDomain;
+            //const index = this.store.active.id;
+            //this.store.domains[index] = newDomain;
             this.reset();
             resolve();
           }

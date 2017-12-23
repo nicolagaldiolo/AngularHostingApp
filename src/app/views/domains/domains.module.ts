@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { domains_routing } from './domains.routing';
 import { DomainsViewComponent } from './components/domains-view.component';
 import { DomainEditComponent } from './components/domains-edit-component';
+import { DomainNewComponent } from './components/domains-new-component';
 import { DomainsService } from './services/domains.service';
 import { DomainsStore } from './services/domains.store';
 import { AppMaterialModule } from '../../app-material.module';
@@ -15,6 +16,7 @@ import {ProvidersStore} from '../providers/services/providers.store';
 @NgModule({
   declarations: [
     DomainsViewComponent,
+    DomainNewComponent,
     DomainEditComponent
   ],
   imports: [
@@ -29,7 +31,7 @@ import {ProvidersStore} from '../providers/services/providers.store';
     ProvidersService,
     ProvidersStore
   ],
-  entryComponents: [DomainEditComponent],
+  entryComponents: [DomainEditComponent, DomainNewComponent],
 })
 export class DomainsModule { }
 

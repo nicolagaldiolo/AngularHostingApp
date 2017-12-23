@@ -4,7 +4,7 @@ import {MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar} from 
 import { DomainsService } from '../services/domains.service';
 import { DomainsStore } from '../services/domains.store';
 import { Domain } from '../model/domain';
-import { DomainEditComponent } from './domains-edit-component';
+import { DomainNewComponent } from './domains-new-component';
 
 @Component({
   selector: 'app-domains-view-component',
@@ -43,22 +43,27 @@ export class DomainsViewComponent implements AfterViewInit {
   }
 
   openDialog(): void {
-    this.dialog.open(DomainEditComponent, { maxWidth: '400px' } )
+    this.dialog.open(DomainNewComponent, { maxWidth: '400px' } )
       .afterClosed().subscribe( (result: NgForm) => {
-        this.actions.save(result.value).then( () => {
-          this.updateData();
-          this.openSnackBar('Elemento Aggiunto' );
-        });
+        if (result) {
+          this.actions.save(result.value).then( () => {
+            this.updateData();
+            this.openSnackBar('Elemento Aggiunto' );
+          });
+        }
 
       });
   }
 
   deleteDomain(domain: Domain, evt: MouseEvent){
     evt.preventDefault();
-    this.actions.delete(domain).then( () => {
-      this.updateData();
-      this.openSnackBar('Elemento eliminato' );
-    });
+    if (confirm("Sei sicuro?")){
+      this.actions.delete(domain).then( () => {
+        this.updateData();
+        this.openSnackBar('Elemento eliminato' );
+      });
+    };
+
   }
 
   updateData(): void {

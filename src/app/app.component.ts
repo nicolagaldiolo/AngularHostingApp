@@ -5,4 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent {
+
+  sideNav = [
+    { name: 'Dashboard', path: 'dashboard' },
+    { name: 'Domini', path: 'domains' },
+    { name: 'Fornitori', path: 'providers' }
+  ];
+
+}

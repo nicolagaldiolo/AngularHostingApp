@@ -10,31 +10,35 @@
       "id": 2,
       "name": "Aruba",
       "website": "https://www.aruba.it/",
-      "label": "#f86313"
+      "label": "#ff0000"
     },
     {
       "id": 3,
       "name": "Media Temple 3",
       "website": "https://mediatemple.net/",
-      "label": "#000000"
-    },
-    {
-      "name": "axasxasx",
-      "website": "axasxasx",
-      "label": "axasxasx",
-      "id": 4
+      "label": "#666666"
     }
   ],
   "domains": [
     {
-      "id": 1,
-      "url": "www.erica.com",
-      "domain": "",
-      "hosting": "",
+      "url": "www.erica2222222.com",
+      "domain": {
+        "id": 2,
+        "name": "Aruba",
+        "website": "https://www.aruba.it/",
+        "label": "#ff0000"
+      },
+      "hosting": {
+        "id": 2,
+        "name": "Aruba",
+        "website": "https://www.aruba.it/",
+        "label": "#ff0000"
+      },
       "renewal": "12/15/2017",
-      "pay": "",
-      "fee": "4500",
-      "note": "Nuovo axasxasasx"
+      "fee": "400.6",
+      "pay": "0",
+      "note": "rgrtgrt",
+      "id": 4
     }
   ]
 }

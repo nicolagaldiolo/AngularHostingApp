@@ -15,26 +15,29 @@ import { MatSnackBar } from '@angular/material';
     <h3>Modifica dominio</h3>
     <form novalidate #f="ngForm" (ngSubmit)="saveHandler(f)">
       <div class="example-container">
+        
         <mat-form-field>
           <mat-label>Url</mat-label>
           <input matInput [ngModel]="store.active?.url" name="url" placeholder="www.website.com" required>
         </mat-form-field>
-
+        
         <mat-form-field>
-          <mat-select ngModel name="domain" placeholder="Dominio">
-            <mat-option *ngFor="let provider of this.storeProviders.providers" [value]="provider">{{provider.name}}</mat-option>
+          <mat-select [ngModel]="store.active?.domain?.id" name="domain" placeholder="Dominio">
+            <mat-option>Nessuno</mat-option>
+            <mat-option *ngFor="let provider of this.storeProviders.providers" [value]="provider.id">{{provider.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select ngModel name="hosting" placeholder="Hosting">
-            <mat-option *ngFor="let provider of this.storeProviders.providers" [value]="provider">{{provider.name}}</mat-option>
+          <mat-select [ngModel]="store.active?.hosting?.id" name="hosting" placeholder="Hosting">
+            <mat-option>Nessuno</mat-option>
+            <mat-option *ngFor="let provider of this.storeProviders.providers" [value]="provider.id">{{provider.name}}</mat-option>
           </mat-select>
         </mat-form-field>
         
         <mat-form-field>
           <mat-label>Data</mat-label>
-          <input matInput [ngModel]="store.active?.renewal" name="renewal" placeholder="Seleziona una data" required>
+          <input matInput [ngModel]="store.active?.renewal" ngModel name="renewal" placeholder="Seleziona una data" required>
         </mat-form-field>
 
         <mat-form-field>
@@ -43,25 +46,22 @@ import { MatSnackBar } from '@angular/material';
         </mat-form-field>
   
         <mat-form-field>
-          <mat-select ngModel name="pay" placeholder="Da pagare">
+          <mat-select [ngModel]="store.active?.pay" name="pay" placeholder="Da pagare">
             <mat-option value="1">Si</mat-option>
             <mat-option value="0">No</mat-option>
           </mat-select>
         </mat-form-field>
-
         <mat-form-field>
           <mat-label>Note</mat-label>
           <textarea matInput [ngModel]="store.active?.note" name="note" placeholder="Inserisci una nota..."></textarea>
         </mat-form-field>
-        
       </div>
-      
-      <a (click)="goBack()">Annulla</a>
-      <button md-button [disabled]="f.invalid">Modifica dominio</button>
+      <a mat-fab routerLink="/domains">
+        <mat-icon aria-label="Example icon-button with a heart icon">arrow_back</mat-icon>
+      </a>
+      <button mat-raised-button [disabled]="f.invalid">Modifica dominio</button>
+    </form>`,
 
-    </form>
-    
-  `,
   styles: [`
     .example-container {
       display: flex;
@@ -80,23 +80,30 @@ export class DomainEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
+
     private actions: DomainsService,
-    private actionsProviders: ProvidersService,
     private store: DomainsStore,
+
+    private actionsProviders: ProvidersService,
     private storeProviders: ProvidersStore,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
   ){}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params: any) => {
       this.actions.getDomain( params['id'] );
     });
-
     this.actionsProviders.getAll();
-
   }
 
   saveHandler(form: NgForm){
+
+    const domain = this.storeProviders.providers.filter( i => i.id === form.value.domain);
+    const hosting = this.storeProviders.providers.filter( i => i.id === form.value.hosting);
+
+    form.value.domain = domain[0];
+    form.value.hosting = hosting[0];
+
     this.actions.save(form.value).then( () => {
       this.router.navigate(['/domains']);
       this.openSnackBar('Elemento modificato correttamente' );
@@ -104,14 +111,10 @@ export class DomainEditComponent implements OnInit {
   }
 
 
-  openSnackBar(message: string, action: string = 'CLOSE', duration: number = 2500) {
+  openSnackBar(message: string, action: string = 'CLOSE', duration: number = 1500) {
     this.snack.open(message, action, {
       duration: duration
     });
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 
 

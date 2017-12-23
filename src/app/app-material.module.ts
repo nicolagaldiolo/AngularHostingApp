@@ -13,23 +13,11 @@ import {
   MatSnackBarModule,
   MatSelectModule,
   MatDatepickerModule,
-  MatNativeDateModule } from '@angular/material';
-
-/*import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatListModule} from '@angular/material/list';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
-
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatSelectModule} from '@angular/material/select';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-*/
+  MatNativeDateModule,
+  MatSidenavModule,
+  MatListModule,
+  MatButtonModule,
+  MatChipsModule } from '@angular/material';
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -44,21 +32,11 @@ const MATERIAL_MODULES = [
   MatSnackBarModule,
   MatSelectModule,
   MatDatepickerModule,
-  MatNativeDateModule
-
-  /*MatSidenavModule,
-  MatButtonModule,
-  MatIconModule,
+  MatNativeDateModule,
+  MatSidenavModule,
   MatListModule,
-  MatTabsModule,
-  MatProgressSpinnerModule,
-  MatCardModule,
-  MatInputModule,
-  MatSnackBarModule,
-  MatSelectModule,
-  MatRadioModule,
-  MatCheckboxModule,
-  MatSlideToggleModule*/
+  MatButtonModule,
+  MatChipsModule
 ];
 
 @NgModule({

@@ -6,6 +6,10 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forRoot([
       {
+        path: 'dashboard',
+        loadChildren: 'app/views/providers/providers.module#ProvidersModule'
+      },
+      {
         path: 'providers',
         loadChildren: 'app/views/providers/providers.module#ProvidersModule'
       },
@@ -13,7 +17,7 @@ import { RouterModule } from '@angular/router';
         path: 'domains',
         loadChildren: 'app/views/domains/domains.module#DomainsModule'
       },
-      { path: '**', redirectTo: 'domains' }
+      { path: '**', redirectTo: 'providers' }
     ])
   ],
   providers: [],

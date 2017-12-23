@@ -29,14 +29,17 @@
     <!-- Color Column -->
     <ng-container matColumnDef="color">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
-      <mat-cell *matCellDef="let row" [style.color]="row.label"> {{row.label}} </mat-cell>
+      <mat-cell *matCellDef="let row">
+        <span *ngIf="row.label" class="custom-label" [style.background-color]="row.label">{{row.label}}</span>
+      </mat-cell>
+
     </ng-container>
 
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
         <mat-cell *matCellDef="let row">
           <div class="button-row">
-            <a href="">
+            <a routerLink="{{row.id}}">
               <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
             </a>
             <a href="" (click)="deleteProvider(row, $event)">
@@ -57,6 +60,3 @@
 
 
 <button mat-raised-button (click)="openDialog()">Pick one</button>
-
-
-<router-outlet></router-outlet>

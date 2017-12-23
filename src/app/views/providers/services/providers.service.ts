@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { environment as env } from '../../../../environments/environment';
 import { ProvidersStore } from './providers.store';
+import {Domain} from '../../domains/model/domain';
 
 const INITIAL_STATE = {};
 
@@ -26,6 +27,11 @@ export class ProvidersService {
         });
     })
     return promise;
+  }
+
+  getProvider(id: Number) {
+    this.http.get<Provider>(`${env.baseUrl}/providers/${id}`)
+      .subscribe(result => this.store.active = result);
   }
 
   /**

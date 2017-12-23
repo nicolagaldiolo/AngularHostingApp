@@ -9,7 +9,6 @@ import { ProvidersService } from './services/providers.service';
 import { ProvidersStore } from './services/providers.store';
 import { AppMaterialModule } from '../../app-material.module';
 
-
 @NgModule({
   declarations: [
     ProvidersViewComponent,

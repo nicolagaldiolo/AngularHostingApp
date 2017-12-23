@@ -25,13 +25,17 @@
     <!-- Name Column -->
     <ng-container matColumnDef="dominio">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Dominio </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.domain.name}} </mat-cell>
+      <mat-cell *matCellDef="let row">
+        <span *ngIf="row.domain?.name" class="custom-label" [style.background-color]="row.domain.label">{{row.domain.name}}</span>
+      </mat-cell>
     </ng-container>
 
     <!-- Color Column -->
     <ng-container matColumnDef="hosting">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Hosting </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.hosting.name}} </mat-cell>
+      <mat-cell *matCellDef="let row">
+        <span *ngIf="row.hosting?.name" class="custom-label" [style.background-color]="row.hosting.label">{{row.hosting.name}}</span>
+      </mat-cell>
     </ng-container>
 
     <!-- Color Column -->
@@ -82,4 +86,4 @@
 
 
 
-<button mat-raised-button (click)="openDialog()">Pick one</button>
+<button mat-raised-button (click)="openDialog()">Nuovo dominio</button>
